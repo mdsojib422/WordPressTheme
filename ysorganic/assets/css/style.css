@@ -3563,3 +3563,93 @@ span.woocommerce-input-wrapper {
     color: #b2b2b2;
     border-radius: 4px;
 }
+.size-single_post_thumb{
+	width: 750px;
+	height: 630px;
+}
+
+/* Comments Box Style */
+section#commnet_wrap {
+    margin-top: 15px;
+}
+section#commnet_wrap input {
+    padding: 10px;
+}
+#comment {
+    width: 73%;
+	padding: 10px;
+}
+#submit {
+    background: none;
+    text-transform: uppercase;
+    font-size: 14px;
+    color: #888;
+    padding: 7px 21px!important;
+    border: 1px solid #888;
+    width: inherit;
+}
+input#submit:hover {
+    background-color: #47b0ed;
+    color: white;
+    border: 0px;
+}
+p.comment-form-author {
+    width: 25%;
+    display: inline-block;
+}
+p.comment-form-email {
+    width: 25%;
+    display: inline-block;
+}
+p.comment-form-website {
+    width: 25%;
+    display: inline-block;
+}
+
+/* Custom widgets */
+.blog__widget {
+	margin-top: 30px;
+}
+
+ul.wp-block-categories-list.wp-block-categories li{
+	list-style: none;
+	padding: 7px 0;
+}
+ul.wp-block-categories-list.wp-block-categories li a {
+    font-size: 18px;
+    color: #666666;
+    font-weight: 600;
+}
+ul.wp-block-categories-list.wp-block-categories li a:hover {    
+    color: #7fad39;    
+}
+ul.wp-block-latest-posts__list.has-dates.wp-block-latest-posts li{
+	margin-bottom: 20px;
+	display: inline-block;
+}
+ul.wp-block-latest-posts__list.has-dates.wp-block-latest-posts li time{
+	font-size: 12px;
+    color: #999999;
+    text-transform: uppercase;
+}
+ul.wp-block-latest-posts__list.has-dates.wp-block-latest-posts a{
+	color: black;
+	font-weight: 700;
+	font-size: 16px;
+}
+.blog__pagination span.page-numbers.current {
+    border: 1px solid #b2b2b2;   
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+}
+.home .from-blog img {
+    width: 360px;
+    height: 280px;
+}
+.blog .blog__item__pic img {
+    width: 360px;
+    height: 280px;
+}

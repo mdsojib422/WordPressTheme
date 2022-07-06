@@ -25,6 +25,9 @@
  if(file_exists(YSORGA_PATH.'/inc/setup-theme.php')){
      require_once(YSORGA_PATH.'/inc/setup-theme.php');
  }
+ if(file_exists(YSORGA_PATH.'/inc/widgets/widgets.php')){
+     require_once(YSORGA_PATH.'/inc/widgets/widgets.php');
+ }
  if(file_exists(YSORGA_PATH.'/inc/acf.php')){
      require_once(YSORGA_PATH.'/inc/acf.php');
  }
@@ -47,3 +50,6 @@ function special_nav_class ($classes) {
 }
 add_filter('nav_menu_css_class' , 'special_nav_class' , 10 , 1);
 
+function ys_load_template($file){
+    require_once YSORGA_PATH .$file.".php";
+}

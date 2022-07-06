@@ -3,9 +3,19 @@
 
 if(!function_exists("ysorga_setup_theme")){
     function ysorga_setup_theme(){
+
         add_theme_support("custom-logo");
 
-        
+        add_image_size( 'single_post_thumb', 750, 630 );
+
+        register_sidebar(array(
+                'name' => 'Blog Sidebar',
+                'id' => 'blog-sidebar',
+                'before_title' => '<h6>',
+                'after_title' => '</h6>',
+                'after_widget' => '</div>',
+                'before_widget' => '<div class="blog__widget">',
+        ));
         register_sidebar(array(
                 'name' => 'Footer Sidebar',
                 'id' => 'footer-sidebar',
@@ -24,6 +34,7 @@ if(!function_exists("ysorga_setup_theme")){
         ));
 
         add_theme_support('woocommerce'); 
+
         register_nav_menu("primary-menu","Primary Menu");
 
  

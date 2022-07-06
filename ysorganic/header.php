@@ -44,10 +44,28 @@
         </div>
         <div class="humberger__menu__cart">
             <ul>
-                <li><a href="#"><i class="fa fa-heart"></i> <span>1</span></a></li>
-                <li><a href="#"><i class="fa fa-shopping-bag"></i> <span>3</span></a></li>
+                <li>
+                    <a href="<?php echo site_url(); ?>/wishlist">
+                        <i class="fa fa-heart"></i>
+                        <span>
+                            <?php echo yith_wcwl_count_all_products(); ?>
+                        </span></a>
+                </li>
+                <li><a href="<?php echo wc_get_cart_url(); ?>"><i class="fa fa-shopping-bag"></i>
+                        <?php
+                        $items =  WC()->cart->get_cart_contents_count();
+                        if ($items) : ?>
+                            <span>
+                                <?php echo $items; ?>
+                            </span>
+                        <?php endif; ?>
+                    </a></li>
             </ul>
-            <div class="header__cart__price">item: <span>$150.00</span></div>
+            <div class="header__cart__price">
+                <?php
+                esc_html_e("item:", "ysorganic");
+                printf("<span>%s</span>", WC()->cart->get_cart_total()); ?>
+            </div>
         </div>
         <div class="humberger__menu__widget">
             <div class="header__top__right__language">
@@ -60,36 +78,49 @@
                 </ul>
             </div>
             <div class="header__top__right__auth">
-                <a href="#"><i class="fa fa-user"></i> Login</a>
+                <?php if (is_user_logged_in()) :
+                    $user = wp_get_current_user();
+                    printf("<a href='%s'><i class='fa fa-user'></i>%s</a>", get_edit_profile_url($user->ID), $user->display_name);
+                ?>
+                <?php else : ?>
+                    <a href="<?php echo wp_login_url(); ?>"><i class="fa fa-user"></i> <?php echo esc_html("Login", 'ysorganic'); ?></a>
+                <?php endif; ?>
             </div>
         </div>
         <nav class="humberger__menu__nav mobile-menu">
-            <ul>
-                <li class="active"><a href="./index.html">Home</a></li>
-                <li><a href="./shop-grid.html">Shop</a></li>
-                <li><a href="#">Pages</a>
-                    <ul class="header__menu__dropdown">
-                        <li><a href="./shop-details.html">Shop Details</a></li>
-                        <li><a href="./shoping-cart.html">Shoping Cart</a></li>
-                        <li><a href="./checkout.html">Check Out</a></li>
-                        <li><a href="./blog-details.html">Blog Details</a></li>
-                    </ul>
-                </li>
-                <li><a href="./blog.html">Blog</a></li>
-                <li><a href="./contact.html">Contact</a></li>
-            </ul>
+            <?php
+            if (has_nav_menu("primary-menu")) {
+                wp_nav_menu(array(
+                    "theme_location" => "primary-menu",
+                ));
+            }
+            ?>
+
         </nav>
         <div id="mobile-menu-wrap"></div>
         <div class="header__top__right__social">
-            <a href="#"><i class="fa fa-facebook"></i></a>
-            <a href="#"><i class="fa fa-twitter"></i></a>
-            <a href="#"><i class="fa fa-linkedin"></i></a>
-            <a href="#"><i class="fa fa-pinterest-p"></i></a>
+            <?php
+            $icons = get_field("social_icons", "option");
+            foreach ($icons as $icon) : ?>
+                <a href="<?php echo $icon['links']['url']; ?>">
+                    <?php echo $icon['icons']; ?>
+                </a>
+            <?php endforeach; ?>
+
         </div>
         <div class="humberger__menu__contact">
             <ul>
-                <li><i class="fa fa-envelope"></i> hello@colorlib.com</li>
-                <li>Free Shipping for all Order of $99</li>
+                <li><i class="fa fa-envelope"></i>
+                    <?php
+                    the_field("header_email", "option");
+                    ?>
+                </li>
+                <li>
+                    <?php
+                    the_field("shipping_text", "option");
+                    ?>
+
+                </li>
             </ul>
         </div>
     </div>
@@ -129,14 +160,8 @@
                                 <?php endforeach; ?>
 
                             </div>
-                            <div class="header__top__right__language">
-                                <img src="img/language.png" alt="">
-                                <div>English</div>
-                                <span class="arrow_carrot-down"></span>
-                                <ul>
-                                    <li><a href="#">Spanis</a></li>
-                                    <li><a href="#">English</a></li>
-                                </ul>
+                            <div class="header__top__right__language"> 
+                                  <?php echo do_shortcode('[gtranslate]'); ?>
                             </div>
                             <div class="header__top__right__auth">
                                 <?php if (is_user_logged_in()) :
@@ -192,8 +217,10 @@
                                     <?php endif; ?>
                                 </a></li>
                         </ul>
-                        <div class="header__cart__price">item:
-                            <?php printf("<span>%s</span>", WC()->cart->get_cart_total()); ?>
+                        <div class="header__cart__price">
+
+                            <?php esc_html_e("item:", "ysorganic");
+                            printf("<span>%s</span>", WC()->cart->get_cart_total()); ?>
                         </div>
                     </div>
                 </div>

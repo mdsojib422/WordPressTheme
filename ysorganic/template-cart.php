@@ -1,6 +1,6 @@
 <?php 
 /* 
-    Template Name: Cart
+Template Name: Cart
 */
 
 get_header();

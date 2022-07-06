@@ -33,17 +33,15 @@
             <div class="col-lg-4 col-md-5 order-md-1 order-2">
                 <div class="blog__sidebar">
                     <?php
-                    if (is_active_sidebar("blog-sidebar")) {
+                    if (is_active_sidebar("blog-sidebar")){
                         dynamic_sidebar('blog-sidebar');
-                    }
-
-                    ?>
+                    }?>
                 </div>
 
             </div>
             <div class="col-lg-8 col-md-7 order-md-1 order-1">
                 <div class="blog__details__text">
-                    <?php the_post_thumbnail(); ?>
+                    <?php echo get_the_post_thumbnail(get_the_ID(), "single_post_thumb"); ?>
                     <?php the_content(); ?>
                 </div>
                 <div class="blog__details__content">
@@ -69,24 +67,31 @@
                         <div class="col-lg-6">
                             <div class="blog__details__widget">
                                 <ul>
-                                    <li><span><?php esc_html_e("Categories") ?>:</span>
+                                    <li>
+                                        <span>
+                                            <?php esc_html_e("Categories", "ysorganic") ?>:
+                                        </span>
 
                                         <?php
+                                        $i = 1;
                                         $cats = get_the_category();
                                         foreach ($cats as $cat) {
-                                            echo $cat->name . ' ';
+                                            echo $cat->name;
+                                            echo ($i < count($cats)) ? ' ,' : " ";
+                                            $i++;
                                         }
                                         ?>
-                                    </li>
+                                         </li>
                                     <li>
                                         <span><?php esc_html_e("Tags", "ysorganic"); ?>:</span>
                                         <?php
+                                        $i = 1;
                                         $tags = get_the_tags();
                                         foreach ($tags as $tag) {
-                                            echo $tag->name . ' ';
+                                            echo $tag->name;
+                                            echo ($i < count($tags)) ? " ," : " ";
+                                            $i++;
                                         }
-
-
                                         ?>
                                     </li>
                                 </ul>
